@@ -7,7 +7,7 @@ https://github.com/appsmithorg/appsmith
 1. Run `install.sh` script
 
 ```
-cd appsmith/deploy
+cp appsmith/deploy/install.sh .
 chmod +x install.sh
 ./install.sh
 ```
