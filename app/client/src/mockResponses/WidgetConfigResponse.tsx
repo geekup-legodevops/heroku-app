@@ -36,6 +36,7 @@ const WidgetConfigResponse: WidgetConfigReducerState = {
       defaultImage:
         "https://res.cloudinary.com/drako999/image/upload/v1589196259/default.png",
       imageShape: "RECTANGLE",
+      maxZoomLevel: 1,
       image: "",
       rows: 3,
       columns: 4,
@@ -155,8 +156,8 @@ const WidgetConfigResponse: WidgetConfigReducerState = {
       columns: 3,
       label: "",
       options: [
-        { id: "1", label: "Male", value: "M" },
-        { id: "2", label: "Female", value: "F" },
+        { label: "Male", value: "M" },
+        { label: "Female", value: "F" },
       ],
       defaultOptionValue: "M",
       widgetName: "RadioGroup",
@@ -195,10 +196,7 @@ const WidgetConfigResponse: WidgetConfigReducerState = {
         operations: [
           {
             type: "MODIFY_PROPS",
-            fn: (
-              widget: WidgetProps & { children?: WidgetProps[] },
-              parent?: WidgetProps & { children?: WidgetProps[] },
-            ) => {
+            fn: (widget: WidgetProps & { children?: WidgetProps[] }) => {
               const tabs = widget.tabs;
 
               const newTabs = tabs.map((tab: any) => {
@@ -436,6 +434,12 @@ const WidgetConfigResponse: WidgetConfigReducerState = {
       allowZoom: true,
       mapCenter: { lat: -34.397, long: 150.644 },
       defaultMarkers: [{ lat: -34.397, long: 150.644, title: "Test A" }],
+    },
+    SKELETON_WIDGET: {
+      isLoading: true,
+      rows: 1,
+      columns: 1,
+      widgetName: "Skeleton",
     },
   },
   configVersion: 1,

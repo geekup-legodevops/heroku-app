@@ -2,6 +2,7 @@ const explorer = require("../../../locators/explorerlocators.json");
 const queryEditor = require("../../../locators/QueryEditor.json");
 const queryLocators = require("../../../locators/QueryEditor.json");
 const commonlocators = require("../../../locators/commonlocators.json");
+const apiwidget = require("../../../locators/apiWidgetslocator.json");
 
 let datasourceName;
 
@@ -15,10 +16,24 @@ describe("Entity explorer datasource structure", function() {
   });
 
   it("Entity explorer datasource structure", function() {
-    cy.GlobalSearchEntity(datasourceName);
-    cy.get(`.t--entity.datasource:contains(${datasourceName})`)
-      .find(explorer.collapse)
+    cy.NavigateToQueryEditor();
+    cy.contains(".t--datasource-name", datasourceName)
+      .find(queryLocators.createQuery)
       .click();
+    cy.wait("@createNewApi").should(
+      "have.nested.property",
+      "response.body.responseMeta.status",
+      201,
+    );
+
+    cy.get(apiwidget.apiTxt)
+      .clear()
+      .type("MyQuery", { force: true })
+      .should("have.value", "MyQuery")
+      .blur();
+    cy.WaitAutoSave();
+
+    cy.GlobalSearchEntity(datasourceName);
     cy.wait("@getDatasourceStructure").should(
       "have.nested.property",
       "response.body.responseMeta.status",
@@ -53,17 +68,11 @@ describe("Entity explorer datasource structure", function() {
       "response.body.responseMeta.status",
       200,
     );
-    cy.deletePostgresDatasource(datasourceName);
-  });
 
-  it("Refresh datasource structure", function() {
-    cy.GlobalSearchEntity(datasourceName);
-    cy.get(`.t--entity.datasource:contains(${datasourceName})`)
-      .find(explorer.collapse)
-      .as("datasourceEntityCollapse");
-
-    cy.get("@datasourceEntityCollapse").click();
-    cy.wait("@getDatasourceStructure").should(
+    cy.GlobalSearchEntity("MyQuery");
+    cy.get(`.t--entity-name:contains(MyQuery)`).click();
+    cy.get(queryEditor.deleteQuery).click();
+    cy.wait("@deleteAction").should(
       "have.nested.property",
       "response.body.responseMeta.status",
       200,
@@ -71,11 +80,28 @@ describe("Entity explorer datasource structure", function() {
 
     cy.get(commonlocators.entityExplorersearch).clear();
 
+    cy.deletePostgresDatasource(datasourceName);
+  });
+
+  it("Refresh datasource structure", function() {
     cy.NavigateToQueryEditor();
-    cy.get(".t--datasource-name")
-      .contains(datasourceName)
+    cy.contains(".t--datasource-name", datasourceName)
+      .find(queryLocators.createQuery)
       .click();
     cy.get(queryLocators.templateMenu).click();
+
+    cy.GlobalSearchEntity(datasourceName);
+    cy.get(`.t--entity.datasource:contains(${datasourceName})`)
+      .find(explorer.collapse)
+      .as("datasourceEntityCollapse");
+
+    cy.wait("@getDatasourceStructure").should(
+      "have.nested.property",
+      "response.body.responseMeta.status",
+      200,
+    );
+
+    cy.get(commonlocators.entityExplorersearch).clear();
 
     const tableName = Math.random()
       .toString(36)
@@ -93,7 +119,9 @@ describe("Entity explorer datasource structure", function() {
     );
 
     cy.GlobalSearchEntity(datasourceName);
-    cy.get("@datasourceEntityCollapse").click();
+    cy.get("@datasourceEntityCollapse")
+      .first()
+      .click();
     cy.xpath(explorer.datsourceEntityPopover)
       .last()
       .click({ force: true });
@@ -128,6 +156,8 @@ describe("Entity explorer datasource structure", function() {
           "response.body.responseMeta.status",
           200,
         );
+
+        cy.get(commonlocators.entityExplorersearch).clear();
         cy.deletePostgresDatasource(datasourceName);
       });
   });

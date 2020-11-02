@@ -1,0 +1,4 @@
+build:
+  docker:
+    web: app/client/Dockerfile
+    api: app/server/Dockerfile

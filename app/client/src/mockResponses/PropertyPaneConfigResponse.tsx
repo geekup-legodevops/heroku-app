@@ -1,7 +1,7 @@
 import { PropertyPaneConfigsResponse } from "api/ConfigsApi";
 
 const PropertyPaneConfigResponse: PropertyPaneConfigsResponse["data"] = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line
   // @ts-ignore
   config: {
     CONTAINER_WIDGET: [
@@ -292,6 +292,36 @@ const PropertyPaneConfigResponse: PropertyPaneConfigsResponse["data"] = {
             propertyName: "isVisible",
             label: "Visible",
             controlType: "SWITCH",
+            isJSConvertible: true,
+          },
+          {
+            id: "3.1.4",
+            helpText: "Controls the max zoom of the widget",
+            propertyName: "maxZoomLevel",
+            label: "Max Zoom Level",
+            controlType: "DROP_DOWN",
+            options: [
+              {
+                label: "1x",
+                value: 1,
+              },
+              {
+                label: "2x",
+                value: 2,
+              },
+              {
+                label: "4x",
+                value: 4,
+              },
+              {
+                label: "8x",
+                value: 8,
+              },
+              {
+                label: "16x",
+                value: 16,
+              },
+            ],
             isJSConvertible: true,
           },
         ],
@@ -806,6 +836,14 @@ const PropertyPaneConfigResponse: PropertyPaneConfigsResponse["data"] = {
             controlType: "SWITCH",
             isJSConvertible: true,
           },
+          {
+            id: "15.1.6",
+            propertyName: "googleRecaptchaKey",
+            label: "Google Recaptcha Key",
+            helpText: "Sets Google Recaptcha v3 site key for button",
+            controlType: "INPUT_TEXT",
+            placeholderText: "Enter google recaptcha key",
+          },
         ],
       },
       {
@@ -953,6 +991,14 @@ const PropertyPaneConfigResponse: PropertyPaneConfigsResponse["data"] = {
             controlType: "SWITCH",
             helpText: "Disables clicks to this widget",
             isJSConvertible: true,
+          },
+          {
+            id: "1.1.4",
+            propertyName: "googleRecaptchaKey",
+            label: "Google Recaptcha Key",
+            helpText: "Sets Google Recaptcha v3 site key for button",
+            controlType: "INPUT_TEXT",
+            placeholderText: "Enter google recaptcha key",
           },
         ],
       },

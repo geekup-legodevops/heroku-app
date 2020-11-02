@@ -20,9 +20,10 @@ describe("Form reset functionality", function() {
       .contains("Reset")
       .click();
 
+    cy.wait(500);
+
     cy.get(".tr")
       .eq(2)
-      .click()
       .should("not.have.class", "selected-row");
 
     cy.get(widgetsPage.inputWidget + " " + "input")

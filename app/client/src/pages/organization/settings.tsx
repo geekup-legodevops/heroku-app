@@ -37,7 +37,7 @@ const SettingsWrapper = styled.div`
   margin: 0 auto;
 `;
 export default function Settings() {
-  const { orgId } = useParams();
+  const { orgId } = useParams<{ orgId: string }>();
   const currentOrg = useSelector(getCurrentOrg);
   const { path } = useRouteMatch();
   const location = useLocation();
@@ -81,7 +81,9 @@ export default function Settings() {
     <SettingsWrapper>
       <LinkToApplications to={"/applications"}>
         <IconComponent iconName="chevron-left" color="#9F9F9F"></IconComponent>
-        <Text type={TextType.H1}>{currentOrg.name}</Text>
+        <Text type={TextType.H1} className="t--organization-header">
+          {currentOrg.name}
+        </Text>
       </LinkToApplications>
       <TabComponent
         tabs={tabArr}

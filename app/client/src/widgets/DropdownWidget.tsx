@@ -7,13 +7,12 @@ import _ from "lodash";
 import {
   WidgetPropertyValidationType,
   BASE_WIDGET_VALIDATION,
-} from "utils/ValidationFactory";
+} from "utils/WidgetValidation";
 import { VALIDATION_TYPES } from "constants/WidgetValidation";
 import { TriggerPropertiesMap } from "utils/WidgetFactory";
-import { VALIDATORS } from "utils/Validators";
-import { DataTree } from "entities/DataTree/dataTreeFactory";
 import { Intent as BlueprintIntent } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import withMeta, { WithMeta } from "./MetaHOC";
 
 class DropdownWidget extends BaseWidget<DropdownWidgetProps, WidgetState> {
   static getPropertyValidationMap(): WidgetPropertyValidationType {
@@ -27,42 +26,7 @@ class DropdownWidget extends BaseWidget<DropdownWidgetProps, WidgetState> {
       // onOptionChange: VALIDATION_TYPES.ACTION_SELECTOR,
       selectedOptionValueArr: VALIDATION_TYPES.ARRAY,
       selectedOptionValues: VALIDATION_TYPES.ARRAY,
-      defaultOptionValue: (
-        value: string | string[],
-        props: WidgetProps,
-        dataTree?: DataTree,
-      ) => {
-        let values = value;
-
-        if (props) {
-          if (props.selectionType === "SINGLE_SELECT") {
-            return VALIDATORS[VALIDATION_TYPES.TEXT](value, props, dataTree);
-          } else if (props.selectionType === "MULTI_SELECT") {
-            if (typeof value === "string") {
-              try {
-                values = JSON.parse(value);
-                if (!Array.isArray(values)) {
-                  throw new Error();
-                }
-              } catch {
-                values = value.length ? value.split(",") : [];
-                if (values.length > 0) {
-                  values = values.map(value => value.trim());
-                }
-              }
-            }
-          }
-        }
-
-        if (Array.isArray(values)) {
-          values = _.uniq(values);
-        }
-
-        return {
-          isValid: true,
-          parsed: values,
-        };
-      },
+      defaultOptionValue: VALIDATION_TYPES.DEFAULT_OPTION_VALUE,
     };
   }
 
@@ -95,7 +59,6 @@ class DropdownWidget extends BaseWidget<DropdownWidgetProps, WidgetState> {
     return {
       selectedOptionValue: undefined,
       selectedOptionValueArr: undefined,
-      selectedOptionValues: undefined,
     };
   }
 
@@ -136,11 +99,25 @@ class DropdownWidget extends BaseWidget<DropdownWidgetProps, WidgetState> {
   }
 
   onOptionSelected = (selectedOption: DropdownOption) => {
+    let isChanged = true;
     if (this.props.selectionType === "SINGLE_SELECT") {
-      this.updateWidgetMetaProperty(
-        "selectedOptionValue",
-        selectedOption.value,
-      );
+      // Check if the value has changed. If no option
+      // selected till now, there is a change
+      if (this.props.selectedOption) {
+        isChanged = !(this.props.selectedOption.value === selectedOption.value);
+      }
+      if (isChanged) {
+        this.props.updateWidgetMetaProperty(
+          "selectedOptionValue",
+          selectedOption.value,
+          {
+            dynamicString: this.props.onOptionChange,
+            event: {
+              type: EventType.ON_OPTION_CHANGE,
+            },
+          },
+        );
+      }
     } else if (this.props.selectionType === "MULTI_SELECT") {
       const isAlreadySelected = this.props.selectedOptionValueArr.includes(
         selectedOption.value,
@@ -154,15 +131,16 @@ class DropdownWidget extends BaseWidget<DropdownWidgetProps, WidgetState> {
       } else {
         newSelectedValue.push(selectedOption.value);
       }
-      this.updateWidgetMetaProperty("selectedOptionValueArr", newSelectedValue);
-    }
-    if (this.props.onOptionChange) {
-      super.executeAction({
-        dynamicString: this.props.onOptionChange,
-        event: {
-          type: EventType.ON_OPTION_CHANGE,
+      this.props.updateWidgetMetaProperty(
+        "selectedOptionValueArr",
+        newSelectedValue,
+        {
+          dynamicString: this.props.onOptionChange,
+          event: {
+            type: EventType.ON_OPTION_CHANGE,
+          },
         },
-      });
+      );
     }
   };
 
@@ -171,15 +149,16 @@ class DropdownWidget extends BaseWidget<DropdownWidgetProps, WidgetState> {
       (v: string) =>
         _.findIndex(this.props.options, { value: v }) !== removedIndex,
     );
-    this.updateWidgetMetaProperty("selectedOptionValueArr", newSelectedValue);
-    if (this.props.onOptionChange) {
-      super.executeAction({
+    this.props.updateWidgetMetaProperty(
+      "selectedOptionValueArr",
+      newSelectedValue,
+      {
         dynamicString: this.props.onOptionChange,
         event: {
           type: EventType.ON_OPTION_CHANGE,
         },
-      });
-    }
+      },
+    );
   };
 
   getWidgetType(): WidgetType {
@@ -197,7 +176,7 @@ export interface DropdownOption {
   intent?: BlueprintIntent;
 }
 
-export interface DropdownWidgetProps extends WidgetProps {
+export interface DropdownWidgetProps extends WidgetProps, WithMeta {
   placeholderText?: string;
   label?: string;
   selectedIndex?: number;
@@ -208,7 +187,11 @@ export interface DropdownWidgetProps extends WidgetProps {
   onOptionChange?: string;
   defaultOptionValue?: string | string[];
   isRequired: boolean;
+  selectedOptionValue: string;
+  selectedOptionValueArr: string[];
 }
 
 export default DropdownWidget;
-export const ProfiledDropDownWidget = Sentry.withProfiler(DropdownWidget);
+export const ProfiledDropDownWidget = Sentry.withProfiler(
+  withMeta(DropdownWidget),
+);
