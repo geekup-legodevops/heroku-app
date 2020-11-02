@@ -1,0 +1,24 @@
+{
+    "name": "Testing tools",
+    "description": "This app does one little thing, and does it well.",
+    "keywords": [
+      "java",
+      "react",
+      "admin"
+    ],
+    "website": "https://appsmith.com/",
+    "repository": "https://github.com/geekup-legodevops/heroku-app",
+    "logo": "https://small-sharp-tool.com/logo.svg",
+    "success_url": "/",
+    "stack": "container",
+    "env": {
+      "APPSMITH_MONGODB_URI": {
+        "description": "MONGO DB URI",
+        "value": ""
+      },
+      "APPSMITH_REDIS_URL": {
+        "description": "REDIS URI",
+        "value": ""
+      }
+    }
+  }

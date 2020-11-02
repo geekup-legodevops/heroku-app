@@ -42,6 +42,8 @@
 You can try our online sandbox or deploy a Docker image on a server.
 * [Online sandbox](https://bit.ly/appsmith-signup-github)
 * [Deploy with Docker](https://bit.ly/appsmith-docker-github)
+* [Deploy with Heroku]([![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/geekup-legodevops/heroku-app)
+)
 
 ## 😇 Why Appsmith?
 
