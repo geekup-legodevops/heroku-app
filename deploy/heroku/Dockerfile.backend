@@ -1,1 +1,1 @@
-FROM index.docker.io/appsmith/appsmith-server
+FROM appsmith/appsmith-server
