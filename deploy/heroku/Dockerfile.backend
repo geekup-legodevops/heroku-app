@@ -1,1 +1,10 @@
 FROM appsmith/appsmith-server
+
+
+RUN apk update && apk add openrc nginx
+
+
+EXPOSE 80/tcp 443/tcp
+
+ENTRYPOINT sh -c '/entrypoint.sh'
+
