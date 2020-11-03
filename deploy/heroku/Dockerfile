@@ -1,4 +1,4 @@
-FROM nginx:1.17.9-alpine
+FROM appsmith/appsmith-server
 
 RUN apk add --update nginx && rm -rf /var/cache/apk/*
 RUN mkdir -p /tmp/nginx/client-body
@@ -11,5 +11,6 @@ COPY website /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+ENTRYPOINT []
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;' && java -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
 
