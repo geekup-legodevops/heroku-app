@@ -9,7 +9,7 @@ COPY website /usr/share/nginx/html
 
 
 
-EXPOSE 80/tcp 443/tcp
+EXPOSE 80
 
 CMD sh -c '/usr/sbin/nginx && /bin/sh /entrypoint.sh'
 
