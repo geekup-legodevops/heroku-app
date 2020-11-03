@@ -6,5 +6,5 @@ RUN apk update && apk add openrc nginx
 
 EXPOSE 80/tcp 443/tcp
 
-ENTRYPOINT sh -c '/entrypoint.sh'
+ENTRYPOINT sh -c 'service nginx start && ./entrypoint.sh'
 
