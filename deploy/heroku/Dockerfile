@@ -1,4 +1,4 @@
-FROM appsmith/appsmith-server
+FROM nginx:1.17.9-alpine
 
 RUN apk add --update nginx && rm -rf /var/cache/apk/*
 RUN mkdir -p /tmp/nginx/client-body
