@@ -3,6 +3,10 @@ FROM appsmith/appsmith-server
 RUN apk add --update nginx && rm -rf /var/cache/apk/*
 RUN mkdir -p /tmp/nginx/client-body
 RUN apk add gettext
+RUN apk add bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
