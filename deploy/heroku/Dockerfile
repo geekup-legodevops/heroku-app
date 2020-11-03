@@ -11,5 +11,5 @@ COPY website /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD sh -c '/usr/sbin/nginx && /bin/sh /entrypoint.sh'
+CMD sh -c '/usr/sbin/nginx && java -Dserver.port=8080 $JAVA_OPTS -jar /server.jar -XX:+UseContainerSupport'
 
