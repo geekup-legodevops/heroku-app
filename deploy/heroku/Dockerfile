@@ -11,5 +11,5 @@ COPY website /usr/share/nginx/html
 
 EXPOSE 80/tcp 443/tcp
 
-ENTRYPOINT sh -c '/usr/sbin/nginx && /bin/sh /entrypoint.sh'
+CMD sh -c '/usr/sbin/nginx && /bin/sh /entrypoint.sh'
 
