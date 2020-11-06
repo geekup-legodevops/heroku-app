@@ -12,10 +12,6 @@
     "success_url": "/",
     "stack": "container",
     "env": {
-      "APPSMITH_MONGODB_URI": {
-        "description": "Mongo database URI",
-        "value": ""
-      },
       "APPSMITH_ENCRYPTION_PASSWORD": {
         "description": "User encryption password",
         "generator": "secret"
