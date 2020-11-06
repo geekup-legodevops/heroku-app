@@ -28,5 +28,11 @@
         "description": "User encryption password",
         "generator": "secret"
       }
+    },
+    "addons": {
+        "heroku-redis": {
+            "plan": "hobby-dev",
+            "as": "APPSMITH_REDIS_URL"
+        }
     }
   }
