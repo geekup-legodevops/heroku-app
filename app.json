@@ -30,11 +30,5 @@
             "plan": "hobby-dev",
             "as": "APPSMITH_REDIS_URL"
         }
-    },
-    "formation": {
-        "web": {
-          "quantity": 1,
-          "size": "free"
-        }
     }
 }
