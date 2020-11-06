@@ -20,11 +20,11 @@
     "env": {
       "APPSMITH_ENCRYPTION_PASSWORD": {
         "description": "User encryption password",
-        "generator": "secret"
+        "value": ""
       },
       "APPSMITH_ENCRYPTION_SALT": {
         "description": "User encryption password",
-        "generator": "secret"
+        "value": ""
       },
       "APPSMITH_MONGODB_URI": {
         "description": "Mongo database URI",
