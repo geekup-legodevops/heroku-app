@@ -16,10 +16,6 @@
         "description": "Mongo database URI",
         "value": ""
       },
-      "APPSMITH_REDIS_URL": {
-        "description": "Redis URI",
-        "value": ""
-      },
       "APPSMITH_ENCRYPTION_PASSWORD": {
         "description": "User encryption password",
         "generator": "secret"
