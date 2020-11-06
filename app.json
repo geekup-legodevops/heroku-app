@@ -28,7 +28,7 @@
     "addons": {
         "heroku-redis": {
             "plan": "hobby-dev",
-            "as": "APPSMITH_REDIS_URL"
+            "as": "APPSMITH_REDIS"
         }
     }
 }
