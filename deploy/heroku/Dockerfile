@@ -20,5 +20,5 @@ COPY website /usr/share/nginx/html
 EXPOSE 80
 
 ENTRYPOINT []
-CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx && java -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx && java -Xmx490m -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
 
