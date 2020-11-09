@@ -34,55 +34,68 @@
       },
       "APPSMITH_MAIL_ENABLED": {
         "desription" : "Enable email",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_MAIL_FROM": {
         "description" : "Admin email",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_REPLY_TO": {
         "description" : "Yout verified email",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_MAIL_HOST": {
         "description" : "Your email host",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_MAIL_SMTP_TLS_ENABLED" : {
         "description": "Enable smtp tls",
-        "value" : ""
+        "value": "",
+        "required": false
       },
       "APPSMITTH_MAIL_USERNAME": {
         "description" : "Mail username",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_MAIL_PAASSWORD": {
         "description" : "Mail password",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_MAIL_SMTP_AUTH" : {
         "description" : "Mail auth",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_OAUTH2_GOOGLE_CLIENT_ID": {
         "description": "Google cient ID",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_OAUTH2_GOOGLE_CLIENT_SECRET": {
         "description" : "Google clent key",
-        "value" : ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_OAUTH2_GITHUB_CLIENT_ID": {
         "description" : "Github client id",
-        "value": "" 
+        "value": "",
+        "required": false
       },
       "APPSMITH_OAUTH2_GITHUB_CLIENT_SECRET": {
         "description" : "Github client secret",
-        "value": ""
+        "value": "",
+        "required": false
       },
       "APPSMITH_GOOGLE_MAPS_API_KEY": {
         "dedcription" : "Google Map API key",
-        "value": ""
+        "value": "",
+        "required": false
       },     
       "APPSMITH_MONGODB_URI": {
         "description": "Mongo database URI",
