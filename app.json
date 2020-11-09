@@ -12,6 +12,12 @@
             "as": "APPSMITH_REDIS"
         }
     ],
+    "formation": { 
+      "web": {
+        "quantity": 1,
+        "size": "free"
+      }
+    },
     "website": "https://appsmith.com/",
     "repository": "https://github.com/geekup-legodevops/heroku-app",
     "logo": "https://small-sharp-tool.com/logo.svg",
