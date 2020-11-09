@@ -23,9 +23,61 @@
         "value": ""
       },
       "APPSMITH_ENCRYPTION_SALT": {
-        "description": "User encryption password",
+        "description" : "User encryption salt",
         "value": ""
       },
+      "APPSMITH_MAIL_ENABLED": {
+        "desription" : "Enable email",
+        "value": ""
+      },
+      "APPSMITH_MAIL_FROM": {
+        "description" : "Admin email",
+        "value": ""
+      },
+      "APPSMITH_REPLY_TO": {
+        "description" : "Yout verified email",
+        "value": ""
+      },
+      "APPSMITH_MAIL_HOST": {
+        "description" : "Your email host",
+        "value": ""
+      },
+      "APPSMITH_MAIL_SMTP_TLS_ENABLED" : {
+        "description": "Enable smtp tls",
+        "value" : ""
+      },
+      "APPSMITTH_MAIL_USERNAME": {
+        "description" : "Mail username",
+        "value": ""
+      },
+      "APPSMITH_MAIL_PAASSWORD": {
+        "description" : "Mail password",
+        "value": ""
+      },
+      "APPSMITH_MAIL_SMTP_AUTH" : {
+        "description" : "Mail auth",
+        "value": ""
+      },
+      "APPSMITH_OAUTH2_GOOGLE_CLIENT_ID": {
+        "description": "Google cient ID",
+        "value": ""
+      },
+      "APPSMITH_OAUTH2_GOOGLE_CLIENT_SECRET": {
+        "description" : "Google clent key",
+        "value" : ""
+      },
+      "APPSMITH_OAUTH2_GITHUB_CLIENT_ID": {
+        "description" : "Github client id",
+        "value": "" 
+      },
+      "APPSMITH_OAUTH2_GITHUB_CLIENT_SECRET": {
+        "description" : "Github client secret",
+        "value": ""
+      },
+      "APPSMITH_GOOGLE_MAPS_API_KEY": {
+        "dedcription" : "Google Map API key",
+        "value": ""
+      },     
       "APPSMITH_MONGODB_URI": {
         "description": "Mongo database URI",
         "value": ""
