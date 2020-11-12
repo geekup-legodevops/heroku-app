@@ -1,8 +1,8 @@
 FROM appsmith/appsmith-editor as frontend
 
 FROM appsmith/appsmith-server
+
 RUN mkdir -p /var/www/appsmith
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 COPY --from=appsmith/appsmith-editor /var/www/appsmith /var/www/appsmith
 
 RUN apk add --update nginx && \ 
@@ -22,4 +22,3 @@ COPY bootstrap.sh .
 EXPOSE 80
 
 ENTRYPOINT ["./bootstrap.sh"]
-CMD ["$PORT"]
