@@ -23,5 +23,5 @@ envsubst "\$PORT" < /etc/nginx/conf.d/default.conf.template.1 > /etc/nginx/conf.
 
 nginx
 
-java -Xmx300m -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar
+java -Xmx128m -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar
 
