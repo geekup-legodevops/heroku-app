@@ -37,6 +37,10 @@ if [[ -z "${APPSMITH_OAUTH2_GOOGLE_CLIENT_ID}" ]] || [[ -z "${APPSMITH_OAUTH2_GO
     unset APPSMITH_OAUTH2_GOOGLE_CLIENT_SECRET
 fi
 
+if [[ -z "${APPSMITH_GOOGLE_MAPS_API_KEY}" ]]; then
+    unset APPSMITH_GOOGLE_MAPS_API_KEY
+fi
+
 cat /etc/nginx/conf.d/default.conf.template | envsubst "$(printf '$%s,' $(env | grep -Eo '^APPSMITH_[A-Z0-9_]+'))" | sed -e 's|\${\(APPSMITH_[A-Z0-9_]*\)}||g' > /etc/nginx/conf.d/default.conf.template.1
 
 envsubst "\$PORT" < /etc/nginx/conf.d/default.conf.template.1 > /etc/nginx/conf.d/default.conf
