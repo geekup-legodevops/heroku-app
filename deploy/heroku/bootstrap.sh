@@ -25,21 +25,20 @@ nginx
 
 
 function get_maximum_heap(){ 
-    case $(ulimit -u) in
-        256)
-            maximum_heap=128
-            ;;
-
-        *)
-            maximum_heap=256
-            ;;
-    esac
+    resource=$(ulimit -u)
+    if [[ $resource < 256 ]]; then
+        maximum_heap=128
+    elif [[ $resource < 512 ]]; then
+        maximum_heap=256
+    fi
 }
 
-# get_maximum_heap
+get_maximum_heap
 
-# application_run_command="java -Xmx${maximum_heap}m  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
-java -XX:MaxRAMPercentage=25  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar -XX:+PrintFlagsFinal
+if [[ ! -z ${maximum_heap} ]]; then 
+    application_run_command="java -Xmx${maximum_heap}m -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
+else
+    application_run_command="java -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
+fi
 
-# eval $application_run_command
-
+eval $application_run_command
