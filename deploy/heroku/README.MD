@@ -74,8 +74,8 @@ To create your custom domain with your app, please follow these steps below:
 ![App setting](./images/app-settings.png)
 - Click `Add domain` button in Domains section
 ![Add domain button](./images/add-domain-button.png)
-- Input your domain name & click `Next`. Heroku will provide you a DNS Target that you can map your domain with
-- ![Add domain form](./images/add-domain-form.png)
+- Input your domain name & click `Next`. Heroku will provide you a DNS Target that you can map your domain with  
+![Add domain form](./images/add-domain-form.png)  
 ![Finish](./images/finish.png)
 
 - Make sure that your DNS Record is update so that your custom domain will map to `DNS Target`
