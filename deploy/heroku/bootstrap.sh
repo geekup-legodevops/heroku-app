@@ -35,9 +35,12 @@ function get_maximum_heap(){
 
 get_maximum_heap
 
-if [[ ! -z ${maximum_heap} ]]; then 
+echo "Maximum heap : $maximum_heap"
+if [[ ! -z ${maximum_heap} ]]; then
+    echo "Run with limited resources"
     application_run_command="java -Xmx${maximum_heap}m -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
 else
+    echo "Run with unlimited resources"
     application_run_command="java -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
 fi
 
