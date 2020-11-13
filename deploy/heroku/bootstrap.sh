@@ -27,9 +27,9 @@ nginx
 function get_maximum_heap(){ 
     resource=$(ulimit -u)
     echo "Resource : $resource"
-    if [[ $resource <= 256 ]]; then
+    if [[ "$resource" -le 256 ]]; then
         maximum_heap=128
-    elif [[ $resource <= 512 ]]; then
+    elif [[ "$resource" -le 512 ]]; then
         maximum_heap=256
     fi
 }
