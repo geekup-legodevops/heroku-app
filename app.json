@@ -28,7 +28,7 @@
         "value": ""
       },
       "APPSMITH_MAIL_ENABLED": {
-        "desription" : "Set this value to true to enable email sending",
+        "description" : "Set this value to true to enable email sending",
         "value": "false",
         "required": false
       },
@@ -88,7 +88,7 @@
         "required": false
       },
       "APPSMITH_GOOGLE_MAPS_API_KEY": {
-        "dedcription" : "Google Map API key",
+        "description" : "Google Map API key",
         "value": "",
         "required": false
       },     
