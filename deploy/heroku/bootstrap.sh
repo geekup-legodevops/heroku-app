@@ -3,7 +3,7 @@
 set -e
 
 if [[ -z "${APPSMITH_MAIL_ENABLED}" ]]; then
-    export APPSMITH_EMAIL_ENABLED=false
+    unset APPSMITH_MAIL_ENABLED
 fi
 
 if [[ -z "${APPSMITH_OAUTH2_GITHUB_CLIENT_ID}" ]] || [[ -z "${APPSMITH_OAUTH2_GITHUB_CLIENT_SECRET}" ]]; then
@@ -39,7 +39,7 @@ function get_maximum_heap(){
 # get_maximum_heap
 
 # application_run_command="java -Xmx${maximum_heap}m  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
-java -XX:+UseContainerSupport -XX:MaxRAMPercentage=25  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar
+java -XX:MaxRAMPercentage=25  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar -XX:+PrintFlagsFinal
 
 # eval $application_run_command
 
