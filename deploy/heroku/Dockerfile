@@ -16,7 +16,6 @@ RUN apk add --update nginx && \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
-COPY website /usr/share/nginx/html
 COPY bootstrap.sh .
 
 EXPOSE 80
