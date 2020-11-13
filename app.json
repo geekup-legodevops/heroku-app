@@ -14,7 +14,6 @@
     ],
 
     "website": "https://appsmith.com/",
-    "repository": "https://github.com/geekup-legodevops/heroku-app",
     "logo": "https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png",
     "success_url": "/",
     "stack": "container",
