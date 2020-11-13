@@ -4,6 +4,7 @@ set -e
 
 function get_maximum_heap(){ 
     resource=$(ulimit -u)
+    echo "Resource : $resource"
     if [[ "$resource" -le 256 ]]; then
         maximum_heap=128
     elif [[ "$resource" -le 512 ]]; then
@@ -15,7 +16,7 @@ function get_maximum_heap(){
 function start_applcation(){
     nginx
     if [[ ! -z ${maximum_heap} ]]; then
-        backend_start_command="java -Xmx${maximum_heap}m -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
+        backend_start_command="java -Xmx${maximum_heap}m -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
     else
         backend_start_command="java -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
     fi
