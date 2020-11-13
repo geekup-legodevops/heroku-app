@@ -3,7 +3,7 @@
 set -e
 
 if [[ -z "${APPSMITH_MAIL_ENABLED}" ]]; then
-    unset APPSMITH_MAIL_ENABLED
+    export APPSMITH_EMAIL_ENABLED=false
 fi
 
 if [[ -z "${APPSMITH_OAUTH2_GITHUB_CLIENT_ID}" ]] || [[ -z "${APPSMITH_OAUTH2_GITHUB_CLIENT_SECRET}" ]]; then
@@ -23,5 +23,23 @@ envsubst "\$PORT" < /etc/nginx/conf.d/default.conf.template.1 > /etc/nginx/conf.
 
 nginx
 
-java -Xmx128m -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar
+
+function get_maximum_heap(){ 
+    case $(ulimit -u) in
+        256)
+            maximum_heap=128
+            ;;
+
+        *)
+            maximum_heap=256
+            ;;
+    esac
+}
+
+# get_maximum_heap
+
+# application_run_command="java -Xmx${maximum_heap}m  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
+java -XX:+UseContainerSupport -XX:MaxRAMPercentage=25  -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar
+
+# eval $application_run_command
 
