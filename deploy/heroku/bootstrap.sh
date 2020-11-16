@@ -21,6 +21,7 @@ function start_applcation(){
     else
         backend_start_command="java -XX:+UseContainerSupport -Dserver.port=8080 -Djava.security.egd='file:/dev/./urandom' -jar server.jar"
     fi
+    echo "Backend command : $backend_start_command"
     eval $backend_start_command
 }
 
