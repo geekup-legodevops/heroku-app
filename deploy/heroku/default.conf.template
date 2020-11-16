@@ -9,7 +9,7 @@ server {
     root /var/www/appsmith;
     index index.html index.htm;
 
-    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header X-Forwarded-Host $host;
 
     location / {
