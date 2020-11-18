@@ -91,7 +91,7 @@
         "required": false
       },
       "APPSMITH_GOOGLE_MAPS_API_KEY": {
-        "description" : "Google Map API key",
+        "description" : "Google Maps API key which is required if you wish to leverage Google Maps widget. Read more at: https://docs.appsmith.com/third-party-services/google-maps",
         "value": "",
         "required": false
       },
