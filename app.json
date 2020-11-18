@@ -15,7 +15,6 @@
 
     "website": "https://appsmith.com/",
     "logo": "https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png",
-    "repository" : "https://github.com/geekup-legodevops/heroku-app/tree/master",
     "success_url": "/",
     "stack": "container",
     "env": {
@@ -92,13 +91,9 @@
         "required": false
       },
       "APPSMITH_GOOGLE_MAPS_API_KEY": {
-        "description" : "Google Maps API key which is required if you wish to leverage Google Maps widget. Read more at: https://docs.appsmith.com/third-party-services/google-maps",
+        "description" : "Google Map API key",
         "value": "",
         "required": false
-      },
-      "APPSMITH_DISABLE_TELEMETRY": {
-        "description" : "We want to be transparent and request that you share anonymous usage data with us. This data is purely statistical in nature and helps us understand your needs & provide better support to your self-hosted instance. You can read more about what information is collected in our documentation https://docs.appsmith.com/telemetry/telemetry",
-        "value": "false",
       }
    }
 }
