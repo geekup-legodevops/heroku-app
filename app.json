@@ -12,6 +12,7 @@
             "as": "APPSMITH_REDIS"
         }
     ],
+
     "website": "https://appsmith.com/",
     "logo": "https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png",
     "success_url": "/",
@@ -90,7 +91,7 @@
         "required": false
       },
       "APPSMITH_GOOGLE_MAPS_API_KEY": {
-        "description" : "Google Maps API key which is required if you wish to leverage Google Maps widget. Read more at: https://docs.appsmith.com/third-party-services/google-maps",
+        "description" : "Google Map API key",
         "value": "",
         "required": false
       },
