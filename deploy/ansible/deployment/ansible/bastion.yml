@@ -1,0 +1,12 @@
+---
+
+- name: Configure the bastion server
+  hosts: bastion
+  remote_user: ubuntu
+  gather_facts: no
+  vars:
+    ansible_port: 22
+
+  roles:
+    - base
+    - bastion

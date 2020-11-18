@@ -1,0 +1,39 @@
+---
+    - debug:
+        msg: 'Got installation directory as {{ install_dir }}'
+
+    - name: Create the installation directory
+      file: path=./{{ install_dir }}/data/{{ item }} state=directory owner=ubuntu group=ubuntu
+      loop:
+        - nginx
+        - certbot
+        - mongo/db
+        - opa/config
+        - appsmith-server/config
+        
+    # The result is stored in {{ ipify_public_ip }}
+    - name: Getting the public IP of the instance
+      ipify_facts:
+
+    - name: Copying the Nginx file
+      template: src={{item.src}} dest={{item.dest}}
+      loop: 
+        - { src: 'nginx_app.conf.j2' , dest: './{{ install_dir }}/data/nginx/app.conf' }
+        - { src: 'docker-compose.yml.j2' , dest: './{{ install_dir }}/docker-compose.yml' }
+        - { src: 'application-prod.properties.j2' , dest: './{{ install_dir }}/data/appsmith-server/config/application-prod.properties' }
+        - { src: 'mongo-init.js.j2' , dest: './{{ install_dir }}/data/mongo/init.js' }
+        - { src: 'opa-config.yml.j2' , dest: './{{ install_dir }}/data/opa/config/config.yml' }
+        - { src: 'init-letsencrypt.sh.j2' , dest: './{{ install_dir }}/init-letsencrypt.sh', mode: 0755 }
+
+    # This step should only be run if the domain is provided. Else we skip this
+    - name: Run the init-letsencrypt as a root user to setup the SSL certificate
+      shell: init-letsencrypt.sh
+      args:
+        chdir: ./{{ install_dir }}
+      become: yes
+
+    - name: Bring up all the containers in docker-compose
+      docker-compose:
+        project_src: ./{{ install_dir }}
+        state: present
+      become: yes

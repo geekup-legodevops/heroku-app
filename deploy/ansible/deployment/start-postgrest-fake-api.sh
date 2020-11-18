@@ -1,0 +1,1 @@
+sudo docker run -d --name appsmith-postgrest -e PGRST_DB_URI='postgres://postgres:Appsmith2019#@fake-api.cvuydmurdlas.us-east-1.rds.amazonaws.com:5432/fakeapi' -e PGRST_DB_SCHEMA=public -e PGRST_DB_ANON_ROLE=postgres -p 3000:3000 postgrest/postgrest

@@ -1,0 +1,16 @@
+---
+    - name: Add Mongo GPG apt Key
+      apt_key:
+        url: https://www.mongodb.org/static/pgp/server-4.2.asc
+        state: present
+      become: yes
+    
+    - name: Add Mongo Repository to Aptitude
+      apt_repository:
+        repo: deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse
+        state: present
+      become: yes
+    
+    - name: Update apt and install Mongo client
+      apt: update_cache=yes name=mongodb-org-shell state=latest
+      become: yes

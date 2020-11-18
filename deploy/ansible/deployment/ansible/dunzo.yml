@@ -1,0 +1,42 @@
+---
+
+- name: Configure the self-hosted server
+  hosts: dunzo
+  remote_user: ubuntu
+  gather_facts: no
+  vars:
+    ansible_port: 22
+
+  vars_prompt: 
+    - name: install_dir
+      prompt: "Please input the installation directory"
+      private: no
+    
+    - name: mongo_host
+      prompt: "Please input the MongoDB hostname (Default: mongo)"
+      default: mongo
+      private: no
+
+    - name: mongo_root_user
+      prompt: "Please input database root username"
+      private: no
+    
+    - name: mongo_root_pass
+      prompt: "Please input database root password"
+      private: yes
+      unsafe: yes
+    
+    - name: mongo_database
+      prompt: "Please input database name"
+      default: appsmith
+      private: no
+    
+    - name: custom_domain
+      prompt: "Please input the custom domain which will be pointed to this instance"
+      private: no
+
+  roles:
+    - base
+    - docker
+    - mongo
+    - folders

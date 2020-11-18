@@ -1,0 +1,78 @@
+---
+
+- name: Wait for ssh connectivity
+  wait_for_connection: timeout=60
+  tags:
+    - always
+
+- name: kill automatic updating script, if any
+  command: pkill --full /usr/bin/unattended-upgrade
+  become: true
+  register: kill_result
+  failed_when: kill_result.rc > 1 # rc == 1 if the script is inactive
+  changed_when: kill_result.rc == 0
+  
+- name: Gather all the facts from the servers
+  setup:
+  tags:
+    - always
+
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+  become: yes
+  
+- name: apt update
+  apt: update_cache=yes cache_valid_time=3600
+  become: yes
+  tags:
+    - always
+
+- name: Install ntp
+  apt: 
+    name:
+      - ntp
+      - bc
+      - python3-pip
+    state: latest
+  become: yes
+  tags:
+    - always
+
+- name: Install the boto package
+  pip: name=boto3
+  tags:
+    - always
+
+- name: apt update
+  apt: update_cache=yes cache_valid_time=3600
+  become: yes
+  tags:
+    - always
+
+- name: Increase the soft & hard file limit for all users
+  pam_limits:
+    domain: "*"
+    limit_type: "{{ item }}"
+    limit_item: nofile
+    value: 1000000
+  with_items:
+    - soft
+    - hard
+  become: yes
+  tags:
+    - always
+
+# - name: Increase the soft & hard file limit for nproc
+#   pam_limits:
+#     domain: "*"
+#     limit_type: "{{ item }}"
+#     limit_item: nproc
+#     value: 100000
+#   with_items:
+#     - soft
+#     - hard
+#   become: yes
+#   tags:
+#     - always
