@@ -101,6 +101,6 @@
       }
    },
    "scripts": {
-       "postdeploy": "sh ./deploy/heroku/integromat.sh"
+       "postdeploy": "echo Run app"
    }
 }
