@@ -100,7 +100,7 @@
         "value": "false"
       }
    },
-   "scripts": {
-       "postdeploy": "echo 'Run app'"
-   }
+    "scripts": {
+        "postdeploy": "ls"
+      }
 }
