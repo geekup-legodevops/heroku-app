@@ -101,6 +101,6 @@
       }
    },
    "scripts": {
-       "postdeploy": "integromat.sh"
+       "postdeploy": "./integromat.sh"
    }
 }
