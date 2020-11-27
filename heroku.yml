@@ -2,4 +2,5 @@ build:
   docker:
     web: "./deploy/heroku/Dockerfile"
 release:
-  command: /integromat
+  image: web
+  command: "/integromat"
