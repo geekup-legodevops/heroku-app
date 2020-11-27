@@ -101,6 +101,6 @@
       }
    },
    "scripts": {
-       "postdeploy": "./integromat.sh"
+       "postdeploy": "sh ./deploy/heroku/integromat.sh"
    }
 }
