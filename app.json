@@ -18,7 +18,7 @@
     "success_url": "/",
     "stack": "container",
     "scripts": {
-        "postdeploy" : "/integromat"
+        "postdeploy" : "/integromat.sh"
     },
     "env": {
       "APPSMITH_MONGODB_URI": {
