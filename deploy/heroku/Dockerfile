@@ -14,11 +14,12 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
-COPY bootstrap.sh .
+COPY bootstrap.sh /bootstrap.sh
 COPY integromat.sh /integromat.sh
 RUN chmod +x /integromat.sh
 
 EXPOSE 80
 
-CMD ["/bin/bash", "bootstrap.sh"]
+ENTRYPOINT [ "/bin/bash" ]
+CMD ["/bootstrap.sh"]
 
