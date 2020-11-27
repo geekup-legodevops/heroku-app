@@ -1,3 +1,4 @@
+#!/bin/sh
 echo "App run"
 # APPSMITH_INSTALLATION_ID=$(curl -s 'https://api64.ipify.org')
 
