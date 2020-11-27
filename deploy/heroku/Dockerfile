@@ -23,7 +23,5 @@ RUN chmod +x /integromat.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["/bin/bash"]
-
-CMD ["bootstrap.sh"]
+CMD ["/bin/bash", "bootstrap.sh"]
 
