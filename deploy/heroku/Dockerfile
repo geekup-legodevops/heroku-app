@@ -9,6 +9,7 @@ RUN apk add --update nginx && \
 				rm -rf /var/cache/apk/* && \
 				mkdir -p /tmp/nginx/client-body && \
 				apk add gettext && apk add bash && \
+                apk --no-cache add curl && \
 				rm /bin/sh && \
 				ln -s /bin/bash /bin/sh
 
