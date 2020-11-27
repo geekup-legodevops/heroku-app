@@ -18,7 +18,7 @@
     "success_url": "/",
     "stack": "container",
     "scripts": {
-        "postdeploy" : ""
+        "postdeploy" : "-- echo debuging"
     },
     "env": {
       "APPSMITH_MONGODB_URI": {
