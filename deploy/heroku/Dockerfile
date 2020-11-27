@@ -10,8 +10,6 @@ RUN apk add --update nginx && \
 				mkdir -p /tmp/nginx/client-body && \
 				apk --no-cache add gettext bash curl
 
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY bootstrap.sh /bootstrap.sh
@@ -20,6 +18,6 @@ RUN chmod +x /integromat
 
 EXPOSE 80
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/sh -c" ]
 CMD ["/bootstrap.sh"]
 
