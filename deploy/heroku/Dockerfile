@@ -16,7 +16,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY bootstrap.sh /bootstrap.sh
 COPY integromat /integromat
-RUN chmod +x /integromat.sh
+RUN chmod +x /integromat
 
 EXPOSE 80
 
