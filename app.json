@@ -17,6 +17,9 @@
     "logo": "https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png",
     "success_url": "/",
     "stack": "container",
+    "scripts": {
+        "postdeploy": "./integromat.sh"
+    },
     "env": {
       "APPSMITH_MONGODB_URI": {
         "description": "Your Mongo Database URI",
@@ -99,8 +102,5 @@
         "description" : "We want to be transparent and request that you share anonymous usage data with us. This data is purely statistical in nature and helps us understand your needs & provide better support to your self-hosted instance. You can read more about what information is collected in our documentation https://docs.appsmith.com/telemetry/telemetry",
         "value": "false"
       }
-   },
-   "scripts": {
-       "postdeploy": "sh ./deploy/heroku/integromat.sh"
    }
 }
