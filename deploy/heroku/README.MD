@@ -1,4 +1,4 @@
-## Deploy Appsmith using Heroku
+## Deploy Appsmith using heroku
 Quickly set up Appsmith to explore product functionality using Heroku.
 
 ## Heroku Installation
