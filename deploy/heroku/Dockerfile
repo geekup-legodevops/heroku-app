@@ -4,6 +4,8 @@ FROM appsmith/appsmith-server
 
 RUN mkdir -p /var/www/appsmith
 COPY --from=legodevops/appsmith /var/www/appsmith /var/www/appsmith
+COPY --from=legodevops/appsmith nginx-root.conf.template nginx-root.conf.template
+COPY --from=legodevops/appsmith nginx.conf.template nginx.conf.template
 
 RUN apk add --update nginx && \ 
 				rm -rf /var/cache/apk/* && \
