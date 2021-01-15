@@ -12,8 +12,6 @@ RUN apk add --update nginx && \
 				mkdir -p /tmp/nginx/client-body && \
 				apk --no-cache add gettext bash curl
 
-# COPY nginx.conf /etc/nginx/nginx.conf
-# COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY bootstrap.sh /bootstrap.sh
 COPY analytics.sh /analytics.sh 
 RUN chmod +x /analytics.sh
