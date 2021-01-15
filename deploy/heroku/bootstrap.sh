@@ -51,7 +51,7 @@ fi
 
 # envsubst "\$PORT" < /etc/nginx/conf.d/default.conf.template.1 > /etc/nginx/conf.d/default.conf
 
-cat /nginx.conf.template | sed -e "s|\$PORT|$HTTP_PORT|g" | sed -e "s|\$NGINX_SSL_CMNT|$NGINX_SSL_CMNT|g" | sed -e "s|\$APPSMITH_DOMAIN|$APPSMITH_DOMAIN|g" | envsubst "$(printf '$%s,' $(env | grep -Eo '^APPSMITH_[A-Z0-9_]+'))" | sed -e 's|\${\(APPSMITH_[A-Z0-9_]*\)}||g' >/etc/nginx/conf.d/default.conf
+cat /nginx.conf.template |sed -e "s|appsmith-internal-server|localhost|g" | sed -e "s|\$PORT|$HTTP_PORT|g" | sed -e "s|\$NGINX_SSL_CMNT|$NGINX_SSL_CMNT|g" | sed -e "s|\$APPSMITH_DOMAIN|$APPSMITH_DOMAIN|g" | envsubst "$(printf '$%s,' $(env | grep -Eo '^APPSMITH_[A-Z0-9_]+'))" | sed -e 's|\${\(APPSMITH_[A-Z0-9_]*\)}||g' >/etc/nginx/conf.d/default.conf
 cat /nginx-root.conf.template | envsubst "$(printf '$%s,' $(env | grep -Eo '^APPSMITH_[A-Z0-9_]+'))" | sed -e 's|\${\(APPSMITH_[A-Z0-9_]*\)}||g' >/etc/nginx/nginx.conf
 
 get_maximum_heap
